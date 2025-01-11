@@ -1,0 +1,35 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block header %}
+  <div class="container mt-5">
+    <h2 class="text-center">{{ topic }}</h2>
+  </div>
+{% endblock header %}
+
+{% block content %}
+  <div class="container mt-4">
+    <p><a href="{% url 'learning_logs:new_entry' topic.id %}" class="btn btn-primary">Adicionar nova entrada</a></p>
+
+    {% for entry in entries %}
+      <div class="card mb-4">
+        <div class="card-header">
+          <h3>
+            {{ entry.data_adicionada|date:'M d, Y H:i' }}  <!-- Exibe a data e hora da entrada -->
+            <small>
+              <a href="{% url 'learning_logs:edit_entry' entry.id %}" class="btn btn-sm btn-warning">Editar entrada</a>
+              <form action="{% url 'learning_logs:delete_entry' topic.id entry.id %}" method="post" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta entrada?')">Excluir</button>
+              </form>
+            </small>
+          </h3>
+        </div>
+        <div class="card-body">
+          <p>{{ entry.texto|linebreaks }}</p>  <!-- Exibe o texto da entrada, com quebra de linha -->
+        </div>
+      </div> <!-- card -->
+    {% empty %}
+      <p>Ainda não há entradas para este tópico.</p>
+    {% endfor %}
+  </div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'learning_logs/base.html' %}
+
+{% block content %}
+  <div class="container mt-4">
+    <h2>Editar Entrada para o Tópico: <strong>{{ topic.topic_name }}</strong></h2>
+
+    <!-- Formulário para editar a entrada -->
+    <form method="post" class="mt-4">
+      {% csrf_token %}
+      
+      <div class="mb-3">
+        {{ form.as_p }}  <!-- Renderiza o formulário como parágrafos -->
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Salvar Entrada</button>  <!-- Botão para submeter o formulário -->
+    </form>
+
+    <br>
+
+    <!-- Link para voltar ao tópico -->
+    <a href="{% url 'learning_logs:topic' topic.id %}" class="btn btn-secondary">Voltar para o Tópico</a>
+
+    <!-- Botão de exclusão -->
+    <form action="{% url 'learning_logs:delete_entry' topic.id entry.id %}" method="post" class="mt-3">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-danger" onclick="return confirm('Tem certeza que deseja excluir esta entrada?')">Excluir Entrada</button>
+    </form>
+  </div>
+{% endblock content %}

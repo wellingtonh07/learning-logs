@@ -1,0 +1,22 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="text-center">Registrar Nova Conta</h2>
+
+    <form method="post" action="{% url 'users:register' %}" class="mt-4">
+      {% csrf_token %}
+
+      <!-- Renderiza o formulário como parágrafos, com o espaçamento adequado -->
+      <div class="mb-3">
+        {{ form.as_p }}
+      </div>
+
+      <!-- Botão de envio do formulário -->
+      <button type="submit" class="btn btn-primary">Registrar</button>
+
+      <!-- Campo oculto para redirecionamento após o registro -->
+      <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+    </form>
+  </div>
+{% endblock %}

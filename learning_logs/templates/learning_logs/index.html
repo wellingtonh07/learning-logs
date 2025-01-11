@@ -1,0 +1,18 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+  {% if not user.is_authenticated %}
+    <div class="container mt-5">
+      <div class="alert alert-info" role="alert">
+        <h2>Crie uma conta para começar a registrar seus aprendizados!</h2>
+        <p><a href="{% url 'users:register' %}" class="btn btn-primary">Registrar uma conta</a> e começar a criar seu próprio Diário de Aprendizado, listando os tópicos que você está aprendendo.</p>
+      </div>
+    </div>
+  {% endif %}
+    
+    <div class="alert alert-secondary" role="alert">
+      <h2>Faça um registro sempre que aprender algo novo sobre um tópico.</h2>
+      <p>Você pode adicionar entradas que resumem o que aprendeu, para manter tudo organizado e acompanhar seu progresso.</p>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,36 @@
+{% extends "learning_logs/base.html" %}
+
+{% block header %}
+{% endblock header %}
+
+{% block content %}
+  <!-- Container centralizado verticalmente e com 70% da altura da tela -->
+  <div class="container d-flex justify-content-center align-items-center" style="min-height: 60vh;">
+    <form method="post" action="{% url 'users:login' %}" class="col-md-6 p-4 border rounded shadow-sm" style="background-color: #f8f9fa;">
+      {% csrf_token %}
+      
+      <!-- Título do Formulário -->
+      <h4 class="text-center mb-4">Acessar sua conta</h4>
+
+      <!-- Campo de E-mail -->
+      <div class="form-group mb-3">
+        <label for="{{ form.username.id_for_label }}" class="form-label">Usuário:</label>
+        {{ form.username }}  <!-- Renderiza o campo de usuário -->
+      </div>
+      
+      <!-- Campo de Senha -->
+      <div class="form-group mb-3">
+        <label for="{{ form.password.id_for_label }}" class="form-label">Senha:</label>
+        {{ form.password }}  <!-- Renderiza o campo de senha -->
+      </div>
+      
+      <!-- Botão de Envio (Entrar) -->
+      <div class="form-group text-center mb-3">
+        <button type="submit" name="submit" class="btn btn-primary w-100">Entrar</button>
+      </div>
+      
+      <!-- Campo oculto para redirecionamento -->
+      <input type="hidden" name="next" value="{% url 'learning_logs:index' %}" />
+    </form>
+  </div>
+{% endblock content %}
