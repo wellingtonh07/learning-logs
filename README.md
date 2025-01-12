@@ -6,7 +6,7 @@
 - Crie entradas relacionadas a esses tópicos.
 - Edite ou apague tópicos e entradas.
 - Registre-se, faça login e gerencie sua conta.
-- link: https://learning-logs-6593.onrender.com
+- Link: https://learning-logs-6593.onrender.com
 
 ## Funcionalidades
 
