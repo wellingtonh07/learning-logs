@@ -19,6 +19,7 @@
 
 - Python
 - Django
+- Bootstrap
 - PostgreSQL
 
 ## Como Rodar o Projeto
